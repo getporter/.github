@@ -1,0 +1,149 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+repository:
+  # See https://developer.github.com/v3/repos/#edit for all available settings.
+
+  # A comma-separated list of topics to set on the repository
+  topics: cnab, porter
+
+  # Either `true` to enable issues for this repository, `false` to disable them.
+  has_issues: true
+
+  # Either `true` to enable the wiki for this repository, `false` to disable it.
+  has_wiki: false
+
+  # Updates the default branch for this repository.
+  default_branch: main
+
+  # Either `true` to allow squash-merging pull requests, or `false` to prevent
+  # squash-merging.
+  allow_squash_merge: true
+
+  # Either `true` to allow merging pull requests with a merge commit, or `false`
+  # to prevent merging pull requests with merge commits.
+  allow_merge_commit: true
+
+  # Either `true` to allow rebase-merging pull requests, or `false` to prevent
+  # rebase-merging.
+  allow_rebase_merge: true
+
+# Labels: define labels for Issues and Pull Requests
+labels:
+  - name: "0 - 🚨🍩"
+    color: "#731aef"
+    description: "Emergency donuts come first"
+  - name: "1 - 🍫"
+    # If including a `#`, make sure to wrap it with quotes!
+    color: "#731aef"
+    description: "Eat chocolate _after_ emergency donuts"
+  - name: "2 - 🍕"
+    color: "#731aef"
+    description: "Pizza should be eaten daily"
+  - name: "bug"
+    color: "#d73a4a"
+    description: "Oops, sorry!"
+  - name: "cnab"
+    color: "Related to the CNAB Specification"
+    description: "#75aa11"
+  - name: "design 🚲🏠"
+    color: "#80bc20"
+    description: "Bust out your paint chips, it's time to bikeshed."
+  - name: "docs"
+    color: "#b5d8f4"
+    description: "Markdown ahoy! Updates needed on porter.sh or in dev docs."
+  - name: "duplicate"
+    color: "#C0C0C0"
+    description: "This issue or pull request already exists"
+  - name: "enhancement"
+    color: "#b5d8f4"
+    description: "New code incoming!"
+  - name: "follow-up"
+    color: "#C0C0C0"
+    description: "This is a follow-up to another pull request"
+  - name: "gap"
+    color: "#d73a4a"
+    description: "We missed a spot"
+  - name: "good first issue"
+    color: "#7057ff"
+    description: "Good for new contributors"
+  - name: "hacktoberfest-accepted"
+    color: "##C0C0C0"
+    description: "Give credit to a PR for hacktoberfest"
+  - name: "help wanted"
+    color: "#7057ff"
+    description: "Good for any contributor"
+  - name: "hmm 🛑🤔"
+    color: "#333333"
+    description: "Needs more thinking time. Don't start on it yet, please."
+  - name: "meta"
+    color: "#b5d8f4"
+    description: "Things necessary to make this project run day to day"
+  - name: "needs-pep"
+    color: "#80bc20"
+    description: "This change should go through the PEP process"
+  - name: "Needs More Input  🦖🤖"
+    color: "#d876e3"
+    description: "Go back and fill in context and explain how to implement"
+  - name: "nope"
+    color: "#C0C0C0"
+    description: "This will not be worked on, #SorryNotSorry"
+  - name: "question"
+    color: "#d876e3"
+    description: "Halp plz"
+  - name: "suggestion"
+    color: "#d876e3"
+    description: "Idea for maintainers to consider. Do not take this issue until triaged."
+  - name: "user experience 🌈💖"
+    color: "#081875"
+    description: "All Hail the UX Gods"
+  - name: "website"
+    color: "#b5d8f4"
+    description: "Great for people with graphic design and html/css skills"
+
+
+# See https://developer.github.com/v3/teams/#add-or-update-team-repository for available options
+teams:
+  - name: getporter/admins
+    # The permission to grant the team. Can be one of:
+    # * `pull` - can pull, but not push to or administer this repository.
+    # * `push` - can pull and push, but not administer this repository.
+    # * `admin` - can pull, push and administer this repository.
+    # * `maintain` - Recommended for project managers who need to manage the repository without access to sensitive or destructive actions.
+    # * `triage` - Recommended for contributors who need to proactively manage issues and pull requests without write access.
+    permission: admin
+  - name: getporter/maintainers
+    permission: maintain
+  - name: getporter/contributors
+    permission: pull
+
+branches:
+  - name: main
+    # https://developer.github.com/v3/repos/branches/#update-branch-protection
+    # Branch Protection settings. Set to null to disable
+    protection:
+      # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
+      required_pull_request_reviews:
+        # The number of approvals required. (1-6)
+        required_approving_review_count: 1
+        # Dismiss approved reviews automatically when a new commit is pushed.
+        dismiss_stale_reviews: false
+        # Blocks merge until code owners have reviewed.
+        require_code_owner_reviews: false
+        # Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
+        dismissal_restrictions:
+          users: []
+          teams: [getporter/maintainers]
+      # Required. Require status checks to pass before merging. Set to null to disable
+      required_status_checks:
+        # Required. Require branches to be up to date before merging.
+        strict: true
+        # Required. The list of status checks to require in order to merge into this branch
+        contexts: ["DCO"]
+      # Required. Enforce all configured restrictions for administrators. Set to true to enforce required status checks for repository administrators. Set to null to disable.
+      enforce_admins: true
+      # Required. Restrict who can push to this branch. Team and user restrictions are only available for organization-owned repositories. Set to null to disable.
+      # Empty prevents anyone from force-pushing to main.
+      restrictions:
+        apps: []
+        users: []
+        teams: []
